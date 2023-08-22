@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import Carousel from "react-material-ui-carousel";
 import "./ProductDetails.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,6 +8,7 @@ import ReviewCard from "./ReviewCard.js";
 import {useAlert} from "react-alert";
 import { clearErrors } from "../../actions/productAction";
 import MetaData from "../layout/MetaData";
+import { addItemsToCart } from "../../actions/cartActions";
 
 const ProductDetails = ({match}) => {
     const dispatch = useDispatch();
@@ -15,6 +16,11 @@ const ProductDetails = ({match}) => {
     const {product, loading, error} = useSelector(
         (state) => state.productDetails
     );
+
+    const addToCartHandler = () => {
+        dispatch(addItemsToCart(match.params.id, quantity));
+        alert.success("Item added to cart successfully!");
+    };
 
     useEffect(() => {
         if (error) {
@@ -31,7 +37,23 @@ const ProductDetails = ({match}) => {
         size: window.innerWidth < 600 ? 20 : 25,
         value: product.ratings,
         isHalf: true,
-    }
+    };
+
+    const [quantity, setQuantity] = useState(1);
+
+    const increaseQuantity = () => {
+        if(product.Stock < quantity) return; 
+
+        const qty = quantity + 1;
+        setQuantity(qty);
+    };
+
+    const decreaseQuantity = () => {
+        if(quantity <= 1) return;
+
+        const qty = quantity - 1;
+        setQuantity(qty);
+    };
 
     return (
     <Fragment>
@@ -63,11 +85,11 @@ const ProductDetails = ({match}) => {
                         <h1>{`₹${product.price}`}</h1>
                         <div className="detailsBlock-3-1">
                             <div className="detailsBlock-3-1-1">
-                                <button>-</button>
-                                <input value="1" type="number"/>
-                                <button>+</button>
-                            </div>{" "}
-                            <button>Add to Cart</button>
+                                <button onClick={decreaseQuantity}>-</button>
+                                <input readOnly value={quantity} type="number"/>
+                                <button onClick={increaseQuantity}>+</button>
+                            </div>
+                            <button onClick={addItemsToCart}>Add to Cart</button>
                         </div>
 
                         <p>

@@ -5,13 +5,16 @@ import DashboardIcon from "@material-ui/icons/Dashboard";
 import PersonIcon from "@material-ui/icons/Person";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ListAltIcon from "@material-ui/icons/ListAlt";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import {useNavigate} from 'react-router-dom';
 import {logout} from "../../../actions/userAction";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import zIndex from "@mui/material/styles/zIndex";
 import Backdrop from "@material-ui/core/Backdrop";
 
-const UserOptions = (user) => {
+const UserOptions = ({user}) => {
+    const {cartItems} = useSelector((state) => state.cart);
+
     const [open, setOpen] = useState(false);
 
     const history = useNavigate();
@@ -23,6 +26,13 @@ const UserOptions = (user) => {
     const options = [
         {icon: <ListAltIcon />, name:"Orders", func:orders},
         {icon: <PersonIcon />, name:"Profile", func:account},
+        {icon: (
+        <ShoppingCartIcon 
+            style={{color: cartItems.length > 0 ? "tomato" : "unset"}}
+        />), 
+        name:`Cart(${cartItems.length})`, 
+        func:cart,
+        },
         {icon: <ExitToAppIcon />, name:"Logout", func: logoutUser},
     ];
 
@@ -32,24 +42,28 @@ const UserOptions = (user) => {
             name:"Dashboard",
             func: dashboard,
         });
-    }
+    };
 
     function dashboard() {
         history.pushState("/dashboard");
-    }
+    };
 
     function orders() {
         history.pushState("/orders");
-    }
+    };
 
     function account() {
         history.pushState("/account");
-    }
+    };
+
+    function cart() {
+        history.pushState("/cart");
+    };
 
     function logoutUser() {
         dispatchEvent(logout());
         alert.success("Logout Successfully");
-    }
+    };
 
     return (
         <Fragment>
@@ -69,7 +83,7 @@ const UserOptions = (user) => {
                 />}
             >
             {options.map((item) => (
-                <SpeedDialAction icon={item.icon} tooltipTitle={item.name} onClick={item.func} />
+                <SpeedDialAction key={item.name} icon={item.icon} tooltipTitle={item.name} onClick={item.func} toolTipOpen={window.innerWidth <= 600 ? true : false}/>
             ))}
             </SpeedDial>
         </Fragment>
