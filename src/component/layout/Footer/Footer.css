@@ -1,0 +1,66 @@
+/* Footer container */
+.footer {
+    background-color: black;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  
+  /* Left links */
+  .footer-left {
+    display: flex;
+    flex-direction: column;
+    font-family: "Monaco", "Courier New", monospace;
+    margin-left: 50px;
+  }
+  
+  .footer-left a {
+    color: white;
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+  
+  .footer-left a:hover {
+    color: lightblue;
+  }
+  
+  /* Logo */
+  .footer-logo img {
+    width: 200px;
+    height: 50px;
+  }
+  
+  /* Right links */
+  .footer-right {
+    display: flex;
+    flex-direction: column;
+    font-family: "Monaco", "Courier New", monospace;
+  }
+  
+  .footer-link {
+    color: white;
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+  
+  .footer-link:hover {
+    color: lightblue;
+  }
+  
+  /* Lines between hyperlinks */
+  .footer-line {
+    border: none;
+    border-top: 0.5px solid white;
+    width: 250px;
+    margin: 5px 0;
+  }
+  
+  /* Copyright text */
+  .footer-copyright {
+    color: white;
+    margin-top: 10px;
+    font-family: "Monaco", "Courier New", monospace;
+    margin-right: 50px;
+  }

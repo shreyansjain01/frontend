@@ -1,0 +1,107 @@
+/* Header Styles */
+.header {
+    background-color: black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+  
+  .logo {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .logo img {
+    height: 70px; /* Adjust as needed */
+  }
+  
+  .nav {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    margin-left: 50px;
+  }
+  
+  .nav li {
+    margin-right: 20px;
+  }
+  
+  .nav a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s;
+    font-family: "Monaco", "Courier New", monospace;
+  }
+  
+  .nav a:hover {
+    color: lightblue;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: black;
+    min-width: 160px;
+    z-index: 1;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown-content a {
+    display: block;
+    padding: 10px;
+    border-bottom: 1px solid white;
+    font-family: "Monaco", "Courier New", monospace;
+  }
+  
+  .icons {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: black;
+    font-family: "Monaco", "Courier New", monospace;
+    margin-right: 60px;
+  }
+
+  .icon {
+    margin-right: 30px;
+    background-color: black;
+  }
+
+  /* Responsive Styles */
+  @media screen and (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .nav {
+      flex-direction: column;
+      align-items: center;
+      margin-top: 10px;
+    }
+    
+    .nav li {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+    
+    .icons {
+      margin-top: 10px;
+      justify-content: center;
+    }
+  }
+  
