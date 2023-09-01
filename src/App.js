@@ -5,7 +5,7 @@
 // import Products from "./component/Product/Products.js";
 // import Search from "./component/Product/Search.js"; 
 // import LoginSignUp from "./component/User/LoginSignUp.js";
-// import store from "./Store.js";
+// import store from "./store.js";
 // import {loadUser} from "./actions/userAction.js";
 // import './App.css';
 // import Header from "./component/layout/Header/Header.js";
@@ -124,7 +124,7 @@ import ProductDetails from "./component/Product/ProductDetails.js";
 import Products from "./component/Product/Products.js";
 import Search from "./component/Product/Search.js"; 
 import LoginSignUp from "./component/User/LoginSignUp.js";
-import store from "./Store.js";
+import store from "./store.js";
 import { loadUser } from "./actions/userAction.js";
 import './App.css';
 import Header from "./component/layout/Header/Header.js";

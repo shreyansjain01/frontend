@@ -1,6 +1,5 @@
-import { combineReducers } from "redux";
+import {combineReducers, legacy_createStore as createStore, applyMiddleware} from "redux"
 import thunk from "redux-thunk";
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { productDetailsReducer, productReducer } from "./reducers/productReducer";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { profileReducer, userReducer, forgotPasswordReducer } from "./reducers/userReducer";
@@ -16,20 +15,14 @@ const reducer = combineReducers({
 });
 
 let initialState = {
-  cart: {
-    cartItems: localStorage.getItem("cartItems")
-    ? JSON.parse(localStorage.getItem("cartItems"))
-    : [],
-  }
 };
 
 const middleware = [thunk];
 
-const store = configureStore({
+const store = createStore(
   reducer,
-  middleware: [...getDefaultMiddleware(), ...middleware], // Use Redux Toolkit's default middleware
-  devTools: composeWithDevTools(),
-  preloadedState: initialState,
-});
+  initialState,
+  composeWithDevTools(applyMiddleware(...middleware))
+);
 
 export default store;

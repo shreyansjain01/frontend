@@ -10,15 +10,34 @@ const ProtectedRoute = ({component: Component, ...rest}) => {
                 <Route 
                     {...rest}
                     render={(props) => {
-                    if(isAuthenticated) {
+                      if(isAuthenticated) {
                         return <Navigate to="/login" />;
-                    }
+                      }
                     
                     return <Component {...props} />;
                     }}
                 />
             )}
         </Fragment>
+
+        /*<Fragment>
+      {loading === false && (
+        <Route
+          {...rest}
+          render={(props) => {
+            if (isAuthenticated === false) {
+              return <Navigate to="/login" />;
+            }
+
+            if (isAdmin === true && user.role !== "admin") {
+              return <Navi to="/login" />;
+            }
+
+            return <Component {...props} />;
+          }}
+        />
+      )}
+    </Fragment>*/
     );
 }
 

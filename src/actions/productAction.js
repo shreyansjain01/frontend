@@ -1,3 +1,4 @@
+
 import axios from "axios";
 
 import {
@@ -10,14 +11,14 @@ import {
     CLEAR_ERRORS,
 } from "../constants/productConstants";
 
-export const getProduct = (keyword="", currentPage=1, price=[0, 25000], category, ratings=0) => async (dispatch) => {
+export const getProduct = (keyword="", currentPage = 1, price = [0, 25000], category, ratings = 0) => async (dispatch) => {
     try {
         dispatch({type: ALL_PRODUCT_REQUEST});
 
-        let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}$price[lte]=${price[1]}&ratings[gte]=${ratings}`;
+        let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
 
         if(category) {
-            link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}$price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
+            link=`/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}`
         }
 
         const {data} = await axios.get(link);
@@ -58,3 +59,42 @@ export const clearErrors = () => async (dispatch) => {
 
 };
 
+
+//Writing again after 1st Error
+
+/*import axios from "axios";
+
+import {
+    ALL_PRODUCT_FAIL,
+    ALL_PRODUCT_REQUEST,
+    ALL_PRODUCT_SUCCESS,
+    CLEAR_ERRORS
+} from "../constants/productConstants";
+
+// Remove this line from here
+// const dispatch = useDispatch();
+
+// Define your action creator function
+export const getProduct = () => async (dispatch) => {
+    try {
+        dispatch({ type: ALL_PRODUCT_REQUEST });
+
+        const { data } = await axios.get("/api/v1/products");
+
+        dispatch({
+            type: ALL_PRODUCT_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: ALL_PRODUCT_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+};
+
+// Keep your clearErrors action creator as is
+export const clearErrors = () => async (dispatch) => {
+    dispatch({ type: CLEAR_ERRORS });
+};
+*/
