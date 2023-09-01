@@ -45,7 +45,7 @@ const ForgotPassword = () => {
                 <div className="forgotPasswordContainer">
                     <div className="forgotPasswordBox">
                         <h2 className="forgotPasswordHeading">Forgot Password</h2>
-                        <form className="forgotPasswordForm" ref={forgotPasswordTab} encType="multipart/form-data" onSubmit={forgotPasswordSubmit}>
+                        <form className="forgotPasswordForm" encType="multipart/form-data" onSubmit={forgotPasswordSubmit}>
                         <div className="forgotPasswordEmail">
                             <MailOutlineIcon />
                             <input 
@@ -70,3 +70,6 @@ const ForgotPassword = () => {
 }
 
 export default ForgotPassword;
+
+
+//add this later in the form element ref={forgotPasswordTab}.
